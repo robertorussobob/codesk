@@ -120,4 +120,10 @@ EOF
 # CLI for Microdsoft 365
 npm i -g @pnp/cli-microsoft365
 
+# tmux configuration
+cd
+git clone https://github.com/gpakosz/.tmux.git
+ln -s -f .tmux/.tmux.conf
+cp .tmux/.tmux.conf.local .
+
 apt update -y; apt upgrade -y
