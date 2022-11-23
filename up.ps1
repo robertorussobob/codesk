@@ -21,7 +21,7 @@ Write-Host "Destroy VM" -ForegroundColor blue
 vagrant destroy -f
 
 Write-Host "Boot VM" -ForegroundColor blue
-vagrant up
+vagrant up --provider vmware_desktop
 
 Write-Host "Clone repos" -ForegroundColor blue
 vagrant ssh -c "/vagrant/setup.sh"
