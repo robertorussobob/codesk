@@ -1,124 +1,71 @@
 #!/usr/bin/env bash
 
-# let git save credentials
-git config --global credential.helper store
+sudo apt-get install software-properties-common -y
+sudo apt-get update -y && sudo apt upgrade -y
+sudo apt-get autoremove -y
 
-add-apt-repository ppa:deadsnakes/ppa -y
-apt-get update
+# Python 3.11
+sudo add-apt-repository -y ppa:deadsnakes/ppa
+sudo apt-get update
+sudo apt-get install -y \
+python3.11 \
+python3.11-dev \
+python3.11-distutils
+sudo update-alternatives --remove python /usr/bin/python2
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 10
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.11 11
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 10
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 11
+python --version
+python3 --version
 
-apt-get install -y \
-python3.9-dev \
-python3.9-distutils
+# pip
+curl -sS https://bootstrap.pypa.io/get-pip.py | python
+export PATH="$PATH:~/.local/bin"
+pip --version
 
-update-alternatives --remove python /usr/bin/python2
-update-alternatives --install /usr/bin/python python /usr/bin/python3 10
-update-alternatives --install /usr/bin/python python /usr/bin/python3.9 11
+# AWS cli
+sudo apt-get install -y unzip
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+rm -rf ./awscliv2.zip ./aws
+aws --version
 
-apt-get install -y \
-python3-pip \
-awscli
-
-
-python3 -m pip install --upgrade awscli
-python3 -m pip install awscli-local[ver2]
-
-apt-get install -y \
-default-jre \
+sudo apt-get install -y \
 apt-transport-https \
 ca-certificates \
 curl \
-gnupg \
-lsb-release \
-tmux \
-ranger \
-mc \
-jq \
+default-jre \
 dos2unix \
-pylint \
-python3-dev \
+gnupg \
+jq \
 libkrb5-dev \
-nodejs \
-npm \
+lsb-release \
+mc \
 parallel
+pylint \
+ranger \
+tmux
 
-# docker
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo \
-  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
-apt-get update
-apt-get install -y docker-ce docker-ce-cli containerd.io
-groupadd docker
-usermod -aG docker vagrant
-
-# kubectl
-apt-get install -y apt-transport-https ca-certificates curl
-curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
-echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list
-apt-get update
-apt-get install kubectl -y
-
-# k3d
-wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
-
-# mongosh
-wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/5.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list
-apt-get update
-apt-get install -y mongodb-mongosh
-
-python3 -m pip install --upgrade pip
-python3 -m pip install \
-Cython \
-pyarrow \
-dataclasses \
-parquet-tools \
-jsonschema \
-csvkit \
-flake8  \
-fastapi \
-colorlog \
-ranger-fm
-
-# ruby
-snap install ruby --classic
-
-# tmuxinator
-sudo /usr/bin/env gem install tmuxinator
-wget https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.bash -O /etc/bash_completion.d/tmuxinator.bash
-
-# install nvm (Node Version Manager)
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-
-# install the latest release of node
+# nvm and node
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 nvm install --lts
+node --versionnewgrp docker
+npm --version
 
-# install Yarn
-npm install --global yarn
-
-# install Quasar CLI
-yarn global add @quasar/cli
-
-# install Icon Genie
-yarn global add @quasar/icongenie
-
-# Vundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
-# Vundle
-cat <<EOF >> ~/.vimrc
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'posva/vim-vue'
-call vundle#end()
-filetype plugin indent on
-EOF
-
-# CLI for Microdsoft 365
-npm i -g @pnp/cli-microsoft365
+# Docker
+sudo apt-get remove docker docker-engine docker.io containerd runc
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+        $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+sudo docker run hello-world
+sudo groupadd docker
+sudo usermod -aG docker $USER
+# logout login needed to docker without sudo
 
 # tmux configuration
 cd
@@ -126,4 +73,8 @@ git clone https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
 
-apt update -y; apt upgrade -y
+# let git save credentials
+git config --global credential.helper store
+
+apt update -y && apt upgrade -y
+
