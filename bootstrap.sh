@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
+sudo apt-get update -y
 sudo apt-get install software-properties-common -y
-sudo apt-get update -y && sudo apt upgrade -y
-sudo apt-get autoremove -y
 
 # Python 3.11
 sudo add-apt-repository -y ppa:deadsnakes/ppa
@@ -68,7 +67,7 @@ sudo usermod -aG docker $USER
 # logout login needed to docker without sudo
 
 # tmux configuration
-cd
+cd /home/vagrant/
 git clone https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
@@ -76,5 +75,6 @@ cp .tmux/.tmux.conf.local .
 # let git save credentials
 git config --global credential.helper store
 
-apt update -y && apt upgrade -y
+sudo apt-get update -y && sudo apt-get upgrade -y
+sudo apt-get autoremove -y
 
