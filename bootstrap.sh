@@ -47,14 +47,6 @@ pylint \
 ranger \
 tmux
 
-# nvm and node
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
-export NVM_DIR="/home/vagrant/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-nvm install --lts
-node --versionnewgrp docker
-npm --version
-
 # Docker
 sudo apt-get remove docker docker-engine docker.io containerd runc
 sudo mkdir -p /etc/apt/keyrings
@@ -76,6 +68,14 @@ cp .tmux/.tmux.conf.local .
 
 # let git save credentials
 git config --global credential.helper store
+
+## nvm and node
+#curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+#export NVM_DIR="/home/vagrant/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+#nvm install --lts
+#node --versionnewgrp docker
+#npm --version
 
 sudo apt-get update -y && sudo apt-get upgrade -y
 sudo apt-get autoremove -y
