@@ -63,7 +63,7 @@ uidmap
 
 # Docker 22.04 Rootless mode
 curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh ./get-docker.sh
+sudo --user=vagrant sh ./get-docker.sh
 dockerd-rootless-setuptool.sh install
 export PATH=/usr/bin:$PATH
 export DOCKER_HOST=unix:///run/user/1000/docker.sock
