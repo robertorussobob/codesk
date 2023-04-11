@@ -102,6 +102,6 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
-  config.vm.provision :shell, :privileged: false, path: "bootstrap.sh"
+  config.vm.provision :shell, privileged: false, path: "bootstrap.sh"
   config.vm.boot_timeout = 400
 end
