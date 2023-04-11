@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 
-sudo apt-get update -y
+# Python repo
+sudo add-apt-repository -y ppa:deadsnakes/ppa
+sudo apt-get update -y && sudo apt-get upgrade -y
 sudo apt-get install software-properties-common -y
 
-# Python 3.11
-sudo add-apt-repository -y ppa:deadsnakes/ppa
-sudo apt-get update
-sudo apt-get install -y \
-python3.11 \
-python3.11-dev \
-python3.11-distutils
+sudo apt-get update -y
+#sudo apt-get install -y \
+#python3.11 \
+#python3.11-dev \
+#python3.11-distutils
 sudo update-alternatives --remove python /usr/bin/python2
-sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 10
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.10 10
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.11 11
-sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 10
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 10
 sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 11
 python --version
 python3 --version
@@ -45,25 +45,28 @@ mc \
 parallel
 pylint \
 ranger \
-tmux
-
-# gcloud CLI
-echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
-sudo apt-get update && sudo apt-get install google-cloud-cli
+tmux \
+uidmap
 
 # Docker
-sudo apt-get remove docker docker-engine docker.io containerd runc
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --yes --dearmor -o /etc/apt/keyrings/docker.gpg
-echo \
-      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-        $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
-sudo docker run hello-world
-sudo groupadd docker
-sudo usermod -aG docker $USER
-# logout login needed to docker without sudo
+## sudo apt-get remove docker docker-engine docker.io containerd runc
+## sudo mkdir -p /etc/apt/keyrings
+## curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --yes --dearmor -o /etc/apt/keyrings/docker.gpg
+## echo \
+      ## "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+        ## $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+## sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+## sudo docker run hello-world
+## sudo groupadd docker
+## sudo usermod -aG docker $USER
+## logout login needed to docker without sudo
+
+# Docker 22.04 Rootless mode
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh ./get-docker.sh
+dockerd-rootless-setuptool.sh install
+export PATH=/usr/bin:$PATH
+export DOCKER_HOST=unix:///run/user/1000/docker.sock
 
 # tmux configuration
 cd /home/vagrant/
@@ -74,6 +77,9 @@ cp .tmux/.tmux.conf.local .
 # let git save credentials
 git config --global credential.helper store
 
+sudo apt-get update -y && sudo apt-get upgrade -y
+sudo apt-get autoremove -y
+
 ## nvm and node
 #curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 #export NVM_DIR="/home/vagrant/.nvm"
@@ -82,6 +88,7 @@ git config --global credential.helper store
 #node --versionnewgrp docker
 #npm --version
 
-sudo apt-get update -y && sudo apt-get upgrade -y
-sudo apt-get autoremove -y
-
+## # gcloud CLI
+## echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+## curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+## sudo apt-get update && sudo apt-get install google-cloud-cli

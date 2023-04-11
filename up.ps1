@@ -1,5 +1,5 @@
 Write-Host "1. Oracle VirtualBox must be installed: https://download.virtualbox.org/virtualbox/6.1.26/VirtualBox-6.1.26-145957-Win.exe" -ForegroundColor yellow
-Write-Host "2. Vagrant must be installed: https://releases.hashicorp.com/vagrant/2.2.18/vagrant_2.2.18_x86_64.msi" -ForegroundColor yellow
+Write-Host "2. Vagrant must be installed: https://releases.hashicorp.com/vagrant/2.3.4/vagrant_2.3.4_windows_i686.msi" -ForegroundColor yellow
 Write-Host "3. Hyper-V must be disabled: save all your work, close all your apps; [Windows]+X A; bcdedit /set hypervisorlaunchtype off; shutdown /r /t 0" -ForegroundColor yellow
 
 $StopWatch = [system.diagnostics.stopwatch]::startNew()
