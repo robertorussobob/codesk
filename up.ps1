@@ -10,3 +10,5 @@ if (Test-Path $sidecar) {
 }
 cd $path
 .\create-vm.ps1
+vagrant ssh
+
