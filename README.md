@@ -1,6 +1,6 @@
 # codesk
 
-codesk is an **Ubuntu Server 22.04 LTS Jammy Jellyfish** _virtual machine_, managed by means of **Vagrant**, packed with some handy development software. 
+codesk is a development environment - that can be packaged as a virtual machine or Docker container - based on **Ubuntu Server 22.04 LTS Jammy Jellyfish** _virtual machine_, managed by means of **Vagrant**, packed with some handy development software. 
 
 
 ## Additional software installed
