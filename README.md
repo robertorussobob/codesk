@@ -17,6 +17,11 @@ Ubuntu Server 22.04 LTS specs:
 - 2027-04-21 Support;
 - 2032-04-21 Security support.
 
+## Requisites
+
+- Oracle [VirtualBox](https://www.virtualbox.org);
+- HashiCorp [Vagrant](https://www.vagrantup.com).
+
 ## Get started
 
 Open a PowerShell and execute the following command:
