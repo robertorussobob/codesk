@@ -14,7 +14,7 @@ sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 
 
 # pip
 curl -sS https://bootstrap.pypa.io/get-pip.py | python
-export PATH="$PATH:~/.local/bin"
+#export PATH="$PATH:~/.local/bin"
 
 # AWS cli
 sudo apt-get install -q=2 unzip
@@ -45,8 +45,11 @@ tmux
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo --user=vagrant sh ./get-docker.sh
 dockerd-rootless-setuptool.sh install
-export PATH=/usr/bin:$PATH
+#export PATH=/usr/bin:$PATH
 export DOCKER_HOST=unix:///run/user/1000/docker.sock
+cat >> ~/.profile <<EOF
+export DOCKER_HOST=unix:///run/user/1000/docker.sock
+EOF
 
 # tmux configuration
 cd /home/vagrant/
