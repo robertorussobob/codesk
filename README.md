@@ -17,3 +17,20 @@ Ubuntu Server 22.04 LTS specs:
 - 2027-04-21 Support;
 - 2032-04-21 Security support.
 
+## Get started
+
+Open a PowerShell and execute the following command:
+```bash
+$ git clone https://github.com/robertorussobob/codesk.git; cd codesk; ./up.ps1
+```
+
+You will see the VM building that starts:
+
+![](./codesk1.png)
+
+than you will see the VM building that ends and lands you at the Ubuntu shell prompt:
+
+![](./codesk2.png)
+
+That's all.
+
