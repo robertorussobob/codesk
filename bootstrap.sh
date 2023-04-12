@@ -32,6 +32,7 @@ rm -rf ./awscliv2.zip ./aws
 aws --version
 
 sudo apt-get install -y \
+uidmap \
 apt-transport-https \
 ca-certificates \
 curl \
@@ -45,8 +46,7 @@ mc \
 parallel
 pylint \
 ranger \
-tmux \
-uidmap
+tmux
 
 # Docker
 ## sudo apt-get remove docker docker-engine docker.io containerd runc
