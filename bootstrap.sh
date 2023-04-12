@@ -2,8 +2,8 @@
 
 # Python repo
 sudo add-apt-repository -y ppa:deadsnakes/ppa
-sudo apt-get update -q -y && sudo apt-get upgrade -q -y
-sudo apt-get install software-properties-common -q -y
+sudo apt-get update -q=2 && sudo apt-get upgrade -q=2
+sudo apt-get install software-properties-common -q=2
 
 sudo apt-get update -q -y
 sudo update-alternatives --remove python /usr/bin/python2
@@ -17,14 +17,14 @@ curl -sS https://bootstrap.pypa.io/get-pip.py | python
 export PATH="$PATH:~/.local/bin"
 
 # AWS cli
-sudo apt-get install -q -y unzip
+sudo apt-get install -q=2 unzip
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip -q awscliv2.zip
 sudo ./aws/install
 rm -rf ./awscliv2.zip ./aws
 aws --version
 
-sudo apt-get install -q -y \
+sudo apt-get install -q=2 \
 uidmap \
 apt-transport-https \
 ca-certificates \
@@ -57,6 +57,6 @@ cp .tmux/.tmux.conf.local .
 # let git save credentials
 git config --global credential.helper store
 
-sudo apt-get update -q -y && sudo apt-get upgrade -q -y
-sudo apt-get autoremove -q -y
+sudo apt-get update -q=2 && sudo apt-get upgrade -q=2
+sudo apt-get autoremove -q=2
 
