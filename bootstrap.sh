@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#p2!/usr/bin/env bash
 
 APT_OPT="-q=2"
 
@@ -81,3 +81,6 @@ sudo apt-get autoremove -q=2
 cat >> ~/.profile <<EOF
 set -o vi
 EOF
+
+pip install aws-sam-cli-local
+
