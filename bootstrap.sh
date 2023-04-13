@@ -24,6 +24,14 @@ sudo ./aws/install
 rm -rf ./awscliv2.zip ./aws
 aws --version
 
+# AWS SAM cli
+curl -OL https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip
+unzip -q aws-sam-cli-linux-x86_64.zip -d sam-installation
+rm aws-sam-cli-linux-x86_64.zip
+sudo ./sam-installation/install
+rm -rf sam-installation
+sam --version
+
 sudo apt-get install -q=2 \
 uidmap \
 apt-transport-https \
