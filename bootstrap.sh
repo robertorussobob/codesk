@@ -2,6 +2,8 @@
 
 APT_OPT="-q=2"
 
+export PATH="$HOME/.local/bin:$PATH"
+
 # Python repo
 sudo add-apt-repository -y ppa:deadsnakes/ppa
 sudo apt-get update $APT_OPT && sudo apt-get upgrade $APT_OPT
