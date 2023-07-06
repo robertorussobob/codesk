@@ -98,6 +98,18 @@ black \
 flake8 \
 parquet-tools
 
+# nvm, npm, yarn
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+nvm install --lts
+npm install --global yarn
+
+# quasar
+yarn global add @quasar/cli
+yarn global add @quasar/icongenie
+
 # Terraform
 sudo apt-get update -y && sudo apt-get install -y gnupg software-properties-common
 wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
