@@ -69,6 +69,12 @@ sudo --user=vagrant sh ./get-docker.sh
 #export DOCKER_HOST=unix:///run/user/1000/docker.sock
 #EOF
 
+# kubectl
+curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubectl
+
 # tmux configuration
 cd /home/vagrant/
 git clone https://github.com/gpakosz/.tmux.git
