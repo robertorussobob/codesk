@@ -95,3 +95,4 @@ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://
 sudo apt update -y
 sudo apt-get install -y terraform
 
+sudo lvextend /dev/ubuntu-vg/ubuntu-lv -L+31G -r
