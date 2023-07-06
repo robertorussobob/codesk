@@ -94,7 +94,8 @@ EOF
 python -m pip  install \
 aws-sam-cli-local \
 black \
-flake8
+flake8 \
+parquet-tools
 
 # Terraform
 sudo apt-get update -y && sudo apt-get install -y gnupg software-properties-common
