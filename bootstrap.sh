@@ -63,6 +63,11 @@ tmux
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo --user=vagrant sh ./get-docker.sh
 
+# run docker as non-root user
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+
 #dockerd-rootless-setuptool.sh install
 #export DOCKER_HOST=unix:///run/user/1000/docker.sock
 #cat >> ~/.profile <<EOF
