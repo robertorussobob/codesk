@@ -92,6 +92,7 @@ set -o vi
 EOF
 
 python -m pip  install \
+awscli-local \
 aws-sam-cli-local \
 black \
 flake8 \
