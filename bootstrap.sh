@@ -91,7 +91,10 @@ cat >> ~/.profile <<EOF
 set -o vi
 EOF
 
-pip install aws-sam-cli-local
+python -m pip  install \
+aws-sam-cli-local \
+black \
+flake8
 
 # Terraform
 sudo apt-get update -y && sudo apt-get install -y gnupg software-properties-common
