@@ -96,9 +96,10 @@ cat >> ~/.profile <<EOF
 set -o vi
 EOF
 
-python -m pip  install \
+python -m pip install \
 awscli-local \
 aws-sam-cli-local \
+csvkit \
 black \
 flake8 \
 parquet-tools
