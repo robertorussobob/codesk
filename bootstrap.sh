@@ -102,7 +102,8 @@ aws-sam-cli-local \
 csvkit \
 black \
 flake8 \
-parquet-tools
+parquet-tools \
+ranger-fm
 
 # nvm, npm, yarn
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
