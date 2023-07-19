@@ -52,6 +52,7 @@ dos2unix \
 gnupg \
 jq \
 libkrb5-dev \
+libxml2-utils \
 lsb-release \
 mc \
 parallel
