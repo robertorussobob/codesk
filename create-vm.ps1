@@ -29,8 +29,4 @@ vagrant ssh -c "/vagrant/setup.sh"
 Write-Host "Status" -ForegroundColor blue
 vagrant ssh -c "/vagrant/status.sh"
 
-#Write-Host "Type 'vagrant ssh' to login inside the VM" -ForegroundColor blue
-#Write-Host "Type 'than type 'gcloud init' to configure gcloud CLI" -ForegroundColor blue
-
 Write-Host "Elapsed: $($StopWatch.Elapsed.TotalSeconds) s" -ForegroundColor blue
-

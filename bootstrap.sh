@@ -52,6 +52,7 @@ dos2unix \
 gnupg \
 jq \
 libkrb5-dev \
+libxml2-utils \
 lsb-release \
 mc \
 parallel
@@ -63,11 +64,22 @@ tmux
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo --user=vagrant sh ./get-docker.sh
 
+# run docker as non-root user
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+
 #dockerd-rootless-setuptool.sh install
 #export DOCKER_HOST=unix:///run/user/1000/docker.sock
 #cat >> ~/.profile <<EOF
 #export DOCKER_HOST=unix:///run/user/1000/docker.sock
 #EOF
+
+# kubectl
+curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubectl
 
 # tmux configuration
 cd /home/vagrant/
@@ -85,7 +97,27 @@ cat >> ~/.profile <<EOF
 set -o vi
 EOF
 
-pip install aws-sam-cli-local
+python -m pip install \
+awscli-local \
+aws-sam-cli-local \
+csvkit \
+black \
+flake8 \
+parquet-tools \
+ranger-fm \
+vulture
+
+# nvm, npm, yarn
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+nvm install --lts
+npm install --global yarn
+
+# quasar
+yarn global add @quasar/cli
+yarn global add @quasar/icongenie
 
 # Terraform
 sudo apt-get update -y && sudo apt-get install -y gnupg software-properties-common
@@ -94,5 +126,10 @@ gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring
 echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 sudo apt update -y
 sudo apt-get install -y terraform
+
+# minikube
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+rm -f minikube-linux-amd64
 
 sudo lvextend /dev/ubuntu-vg/ubuntu-lv -L+31G -r
