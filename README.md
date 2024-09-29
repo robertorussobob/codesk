@@ -9,6 +9,7 @@ It can be packaged as a _virtual machine_ or Docker _container_; it is based on 
 - Docker Engine (rootless);
 - AWS cli;
 - AWS sam;
+- AWS CDK (Cloud Development Kit)
 - GNU Parallel;
 - Python 3.11
 - tmux, ranger
