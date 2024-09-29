@@ -12,19 +12,16 @@ sudo apt-get install software-properties-common $APT_OPT
 sudo apt-get update $APT_OPT
 
 sudo apt-get install $APT_OPT \
-python3.9 \
-python3.9-dev \
-python3.9-distutils
+python3.11 \
+python3.11-dev \
+python3.11-distutils
 
 sudo update-alternatives --remove python /usr/bin/python2
-sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.10 10
-sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 10
-sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.9 11
-sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 11
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.11 11
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 11
 
 # pip
 curl -sS https://bootstrap.pypa.io/get-pip.py | python
-#export PATH="$PATH:~/.local/bin"
 
 # AWS cli
 sudo apt-get install $APT_OPT unzip
@@ -57,6 +54,7 @@ lsb-release \
 mc \
 parallel
 pylint \
+python3-venv \
 ranger \
 tmux
 
@@ -68,12 +66,6 @@ sudo --user=vagrant sh ./get-docker.sh
 sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
-
-#dockerd-rootless-setuptool.sh install
-#export DOCKER_HOST=unix:///run/user/1000/docker.sock
-#cat >> ~/.profile <<EOF
-#export DOCKER_HOST=unix:///run/user/1000/docker.sock
-#EOF
 
 # kubectl
 curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg
@@ -108,12 +100,16 @@ ranger-fm \
 vulture
 
 # nvm, npm, yarn
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 nvm install --lts
 npm install --global yarn
+
+# CDK
+npm install -g aws-cdk
+cdk --version
 
 # quasar
 yarn global add @quasar/cli
