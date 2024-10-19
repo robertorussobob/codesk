@@ -97,7 +97,8 @@ black \
 flake8 \
 parquet-tools \
 ranger-fm \
-vulture
+vulture \
+git-remote-codecommit
 
 # nvm, npm, yarn
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
