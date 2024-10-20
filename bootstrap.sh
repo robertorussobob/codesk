@@ -39,6 +39,10 @@ sudo ./sam-installation/install
 rm -rf sam-installation
 sam --version
 
+curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
+sudo dpkg -i session-manager-plugin.deb
+rm session-manager-plugin.deb
+
 sudo apt-get install $APT_OPT \
 uidmap \
 apt-transport-https \
@@ -54,7 +58,8 @@ lsb-release \
 mc \
 parallel
 pylint \
-python3-venv \
+python3.11-dev \
+python3.11-venv \
 ranger \
 tmux
 
