@@ -135,7 +135,7 @@ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 rm -f minikube-linux-amd64
 
 # Amazon Lightsail Control plugin
-curl "https://s3.us-west-2.amazonaws.com/lightsailctl/latest/linux-amd64/lightsailctl" -o "/usr/local/bin/lightsailctl"
+sudo curl "https://s3.us-west-2.amazonaws.com/lightsailctl/latest/linux-amd64/lightsailctl" -o "/usr/local/bin/lightsailctl"
 sudo chmod +x /usr/local/bin/lightsailctl
 
 sudo lvextend /dev/ubuntu-vg/ubuntu-lv -L+31G -r
