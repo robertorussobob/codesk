@@ -98,8 +98,8 @@ Vagrant.configure("2") do |config|
     # Customize the amount of memory on the VM:
     #vb.memory = "4096"
     #vb.cpus = "2"
-    vb.memory = "16384"
-    vb.cpus = "18"
+    vb.memory = "8182"
+    vb.cpus = "4"
     vb.customize ["modifyvm", :id, "--ioapic", "on"]
     #vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
   end
