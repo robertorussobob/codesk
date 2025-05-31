@@ -56,7 +56,7 @@ libkrb5-dev \
 libxml2-utils \
 lsb-release \
 mc \
-parallel
+parallel \
 pylint \
 python3.11-dev \
 python3.11-venv \
@@ -103,7 +103,8 @@ flake8 \
 parquet-tools \
 ranger-fm \
 vulture \
-git-remote-codecommit
+git-remote-codecommit \
+yq
 
 # nvm, npm, yarn
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
@@ -139,3 +140,5 @@ sudo curl "https://s3.us-west-2.amazonaws.com/lightsailctl/latest/linux-amd64/li
 sudo chmod +x /usr/local/bin/lightsailctl
 
 sudo lvextend /dev/ubuntu-vg/ubuntu-lv -L+31G -r
+
+sudo snap install tree btop
