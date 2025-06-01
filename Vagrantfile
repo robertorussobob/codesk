@@ -44,11 +44,23 @@ Vagrant.configure("2") do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # NOTE: This will enable public access to the opened port
   config.vm.usable_port_range = 8000..9999
-  config.vm.network "forwarded_port", guest: 5432, host: 8001, auto_correct: true, host_ip: "127.0.0.1" # PostgreSQL
-  config.vm.network "forwarded_port", guest: 8080, host: 9010, auto_correct: true, host_ip: "127.0.0.1" # cAdvisor
-  config.vm.network "forwarded_port", guest: 8999, host: 9011, auto_correct: true, host_ip: "127.0.0.1" # pgAdmin
-  config.vm.network "forwarded_port", guest: 9443, host: 9020, auto_correct: true, host_ip: "127.0.0.1" # Portainer
-  config.vm.network "forwarded_port", guest: 3000, host: 9030, auto_correct: true, host_ip: "127.0.0.1" # Grafana
+  config.vm.network "forwarded_port", guest: 8001, host: 8001, auto_correct: true, host_ip: "127.0.0.1" # PostgreSQL
+  config.vm.network "forwarded_port", guest: 8002, host: 8002, auto_correct: true, host_ip: "127.0.0.1" # LocalStack
+  config.vm.network "forwarded_port", guest: 8003, host: 8003, auto_correct: true, host_ip: "127.0.0.1" # Redis
+  config.vm.network "forwarded_port", guest: 8004, host: 8004, auto_correct: true, host_ip: "127.0.0.1" # MemCached
+  config.vm.network "forwarded_port", guest: 8005, host: 8005, auto_correct: true, host_ip: "127.0.0.1" # Nginx
+  config.vm.network "forwarded_port", guest: 8006, host: 8006, auto_correct: true, host_ip: "127.0.0.1" # Gitea
+  config.vm.network "forwarded_port", guest: 9001, host: 9001, auto_correct: true, host_ip: "127.0.0.1" # pgAdmin
+  config.vm.network "forwarded_port", guest: 9002, host: 9002, auto_correct: true, host_ip: "127.0.0.1" # Jenkins
+  config.vm.network "forwarded_port", guest: 9003, host: 9003, auto_correct: true, host_ip: "127.0.0.1" # Allure
+  config.vm.network "forwarded_port", guest: 9004, host: 9004, auto_correct: true, host_ip: "127.0.0.1" # Wordpress
+  config.vm.network "forwarded_port", guest: 9005, host: 9005, auto_correct: true, host_ip: "127.0.0.1" # Kafka UI
+  config.vm.network "forwarded_port", guest: 9006, host: 9006, auto_correct: true, host_ip: "127.0.0.1" # Mongo Express
+  config.vm.network "forwarded_port", guest: 9007, host: 9007, auto_correct: true, host_ip: "127.0.0.1" # Gitea
+  config.vm.network "forwarded_port", guest: 9999, host: 9999, auto_correct: true, host_ip: "127.0.0.1" # cAdvisor
+  config.vm.network "forwarded_port", guest: 9998, host: 9998, auto_correct: true, host_ip: "127.0.0.1" # Prometheus
+  config.vm.network "forwarded_port", guest: 9997, host: 9997, auto_correct: true, host_ip: "127.0.0.1" # Grafana
+  config.vm.network "forwarded_port", guest: 9996, host: 9996, auto_correct: true, host_ip: "127.0.0.1" # Portainer
 
 #  config.vm.network "forwarded_port", guest: 8080, host: 8080
 #  config.vm.network "forwarded_port", guest: 8081, host: 8081
