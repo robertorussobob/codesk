@@ -61,7 +61,8 @@ pylint \
 python3.11-dev \
 python3.11-venv \
 ranger \
-tmux
+tmux \
+zerofree
 
 # Docker 22.04 Rootless mode
 curl -fsSL https://get.docker.com -o get-docker.sh
